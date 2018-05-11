@@ -16,17 +16,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Hide Admin Bar
 function hide_travelers_admin_bar(){
-	if (!current_user_can('edit_posts'){
-		show_admin_bar(false);
+	if (current_user_can('edit_posts'){
+		show_admin_bar(true);
 	}
 }
 add_action('after_setup_theme', 'hide_travelers_admin_bar');
 
 // Rename Registration
-function tml_action_template_message_filter( $message, $action ) {
+/*function tml_action_template_message_filter( $message, $action ) {
     if ( 'register' == $action )
         return 'Create Account';
     return $message;
 }
 add_filter( 'tml_action_template_message', 'tml_action_template_message_filter', 10, 2 );
+*/
 ?>
