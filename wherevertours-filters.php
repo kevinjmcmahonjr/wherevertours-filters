@@ -15,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Hide Admin Bar
-function hide_travelers_admin_bar(){
+function hide_travelers_admin_bar($show){
 	if ( ! current_user_can( 'edit_posts' ){
-		return false;
+		$show = false;
 	}
-	return;
+	return $show;
 }
 add_filter( 'show_admin_bar' , 'hide_travelers_admin_bar' , 20 , 1 );
 
