@@ -16,8 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Hide Admin Bar
 function hide_travelers_admin_bar(){
-	if (current_user_can('edit_posts')){
-		show_admin_bar(true);
+	if (!current_user_can('edit_posts')){
+		show_admin_bar(false);
 	}
 }
 add_action('after_setup_theme', 'hide_travelers_admin_bar');
