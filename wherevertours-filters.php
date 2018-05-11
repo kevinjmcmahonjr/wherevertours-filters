@@ -15,9 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Hide Admin Bar
-if ( ! current_user_can('edit_posts')){
-	add_filter('show_admin_bar', '__return_false');
+function hide_travelers_admin_bar(){
+	if ( ! current_user_can('edit_posts')){
+		return false;
+	}
+	else return true;
 }
+add_filter('show_admin_bar', 'hide_travelers_admin_bar');
 
 // Rename Registration
 function tml_action_template_message_filter( $message, $action ) {
