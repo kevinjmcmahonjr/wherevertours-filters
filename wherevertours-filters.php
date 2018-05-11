@@ -15,12 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Hide Admin Bar
-function hide_travelers_admin_bar(){
-	if (!current_user_can('edit_posts')){
-		show_admin_bar(false);
-	}
+function hide_travelers_admin_bar($content){
+	return ( ! current_user_can( 'edit_posts' ) ) ? $content : false;
 }
-add_action('after_setup_theme', 'hide_travelers_admin_bar');
+add_filter('show_admin_bar', 'hide_travelers_admin_bar', 20, 1);
 
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
