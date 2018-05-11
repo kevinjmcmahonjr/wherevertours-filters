@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Hide Admin Bar
 function hide_travelers_admin_bar($content){
-	return ( current_user_can( 'administrator' ) ) ? $content : false;
+	return false;
 }
 add_filter('show_admin_bar', 'hide_travelers_admin_bar');
 
