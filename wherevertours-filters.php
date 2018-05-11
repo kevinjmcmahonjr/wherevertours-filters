@@ -15,8 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Hide Admin Bar
-function hide_travelers_admin_bar($show){
-	if ( ! current_user_can( 'edit_posts' ){
+function hide_travelers_admin_bar( $show ){
+	if ( ! current_user_can( 'edit_posts' )){
 		$show = false;
 	}
 	return $show;
