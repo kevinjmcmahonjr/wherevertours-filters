@@ -20,10 +20,12 @@ if (!current_user_can('edit_posts')) {
 }
 
 // Rename Registration
+/*
 function tml_action_template_message_filter( $message, $action ) {
     if ( 'register' == $action )
         return 'Create Account';
     return $message;
 }
 add_filter( 'tml_action_template_message', 'tml_action_template_message_filter', 10, 2 );
+*/
 ?>
