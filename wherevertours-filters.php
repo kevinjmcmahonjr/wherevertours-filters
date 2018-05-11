@@ -23,6 +23,34 @@ function hide_travelers_admin_bar( $show ){
 }
 add_filter( 'show_admin_bar' , 'hide_travelers_admin_bar' , 20 , 1 );
 
+/** Disable All WooCommerce  Styles and Scripts Except Shop Pages*/
+function dequeue_woocommerce_styles_scripts() {
+	if ( function_exists( 'is_woocommerce' ) ) {
+		if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+		# Styles
+		wp_dequeue_style( 'woocommerce-general' );
+		wp_dequeue_style( 'woocommerce-layout' );
+		wp_dequeue_style( 'woocommerce-smallscreen' );
+		wp_dequeue_style( 'woocommerce_frontend_styles' );
+		wp_dequeue_style( 'woocommerce_fancybox_styles' );
+		wp_dequeue_style( 'woocommerce_chosen_styles' );
+		wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+		# Scripts
+		wp_dequeue_script( 'wc_price_slider' );
+		wp_dequeue_script( 'wc-single-product' );
+		wp_dequeue_script( 'wc-add-to-cart' );
+		wp_dequeue_script( 'wc-cart-fragments' );
+		wp_dequeue_script( 'wc-checkout' );
+		wp_dequeue_script( 'wc-add-to-cart-variation' );
+		wp_dequeue_script( 'wc-single-product' );
+		wp_dequeue_script( 'wc-cart' );
+		wp_dequeue_script( 'wc-chosen' );
+		wp_dequeue_script( 'woocommerce' );
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_styles_scripts', 99 );
+
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
     if ( 'register' == $action )
