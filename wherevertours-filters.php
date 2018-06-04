@@ -51,19 +51,6 @@ function dequeue_woocommerce_styles_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_styles_scripts', 99 );
 
-// Hide All None Live Tours From Queries
-function hide_tour_posts_from_queries($query){
-	if (!is_admin() && $query->is_main_query() && $query->query_vars['post_type'] == 'tours'){
-		$args = array(
-			'meta_key' => 'hide_from_queries',
-			'meta_value' => 'yes',
-			'meta_compare' => '!='
-		);
-		$query->set('meta_key', $args);
-	}
-}
-add_action( 'pre_get_posts', 'hide_tour_posts_from_queries');
-
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
     if ( 'register' == $action )
