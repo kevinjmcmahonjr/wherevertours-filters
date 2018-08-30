@@ -58,7 +58,7 @@ function account_creation_referral_url( $form ){
     // Return that value to the form
     return esc_url_raw($referral_url);
 }
-add_filter( 'gform_field_value_refurl_2', 'account_creation_referral_url');
+add_filter( 'gform_field_value_referral_url_2', 'account_creation_referral_url');
 
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
