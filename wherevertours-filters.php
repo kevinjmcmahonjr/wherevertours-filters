@@ -52,18 +52,21 @@ function dequeue_woocommerce_styles_scripts() {
 add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_styles_scripts', 99 );
 
 function account_creation_referral_url( $form ){
-    // Grab URL from HTTP Server Var and put it into a variable
-    $referral_url = $_SERVER['HTTP_REFERER'];
- 
-    // Return that value to the form
-    return esc_url_raw($referral_url);
+	// Grab URL from HTTP Server Var and put it into a variable
+	$referral_url = $_SERVER['HTTP_REFERER'];
+	// Set a cookie
+	setcookie( $wt_account_activation_referral_url, $referral_url, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+	// Return that value to the form
+	return esc_url_raw($referral_url);
 }
 add_filter( 'gform_field_value_referral_url', 'account_creation_referral_url');
 	
-function account_activation_redirect_add_referral( $entry ){
-	$base_redirect_url = 'https://wherevertours.com/account-activation-successful/';
-	$referral_url = rgar( $entry, '5' );
-	$activation_redirect_url = $base_redirect_url . '?referralurl=' . $referral_url;
+function account_activation_redirect_add_referral( ){
+	$base_activation_redirect_url = 'https://wherevertours.com/account-activation-successful/';
+	if(isset($_COOKIE[$wt_account_activation_referral_url])){
+		$return_to_referral_url = $_COOKIE[$wt_account_activation_referral_url];
+	}
+	$activation_redirect_url = $base_activation_redirect_url . '?returntoreferralurl=' . $return_to_referral_url;
 	return $activation_redirect_url;
 }
 add_filter( 'gpbua_activation_redirect_url', 'account_activation_redirect_add_referral' );
