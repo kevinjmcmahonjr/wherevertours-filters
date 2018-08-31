@@ -73,6 +73,12 @@ function account_activation_redirect_add_referral( ){
 }
 add_filter( 'gpbua_activation_redirect_url', 'account_activation_redirect_add_referral' );
 
+function output_current_user_email(){
+	$current_user = wp_get_current_user();
+	$current_user_email = $current_user->user_email
+}
+add_shortcode( 'display_current_user_email', 'output_current_user_email')
+
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
     if ( 'register' == $action )
