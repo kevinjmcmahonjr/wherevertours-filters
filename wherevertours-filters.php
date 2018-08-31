@@ -56,7 +56,7 @@ function account_creation_referral_url( $form ){
 	$referral_url = $_SERVER['HTTP_REFERER'];
 	// Set a cookie
 	if(!isset($_COOKIE[$wt_account_activation_referral_url])){
-		setcookie( wt_account_activation_referral_url, $referral_url, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+		setcookie( 'wt_account_activation_referral_url', $referral_url, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
 	}
 	// Return that value to the form
 	return esc_url_raw($referral_url);
