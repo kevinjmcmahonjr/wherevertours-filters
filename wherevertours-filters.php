@@ -59,6 +59,14 @@ function account_creation_referral_url( $form ){
     return esc_url_raw($referral_url);
 }
 add_filter( 'gform_field_value_referral_url', 'account_creation_referral_url');
+	
+function account_activation_redirect_add_referral( $entry ){
+	$base_redirect_url = 'https://wherevertours.com/account-activation-successful/';
+	$referral_url = rgar( $entry, '5' );
+	$activation_redirect_url = $base_redirect_url . '?referralurl=' . $referral_url;
+	return $activation_redirect_url;
+}
+add_filter( 'gpbua_activation_redirect_url', 'account_activation_redirect_add_referral' );
 
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
