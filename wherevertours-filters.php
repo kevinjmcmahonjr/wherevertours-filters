@@ -60,7 +60,13 @@ function account_creation_referral_url( $form ){
 add_filter( 'gform_field_value_referral_url', 'account_creation_referral_url');
 	
 function account_activation_redirect_add_referral( ){
-	$return_to_referral_url = '';
+	$current_user = wp_get_current_user();
+	$current_user_email = $current_user->user_email;
+	
+	$search_criteria['field_filters'][] = array( 'key' => '5', 'value' => $current_user_email);
+	$entries = GFAPI::get_entries( '2', $search_criteria );
+	
+	$return_to_referral_url = rgar( $entries[0], '5' );
 	$base_activation_redirect_url = 'https://wherevertours.com/account-activation-successful/';
 	$activation_redirect_url = $base_activation_redirect_url . '?returntoreferralurl=' . $return_to_referral_url;
 	return $activation_redirect_url;
