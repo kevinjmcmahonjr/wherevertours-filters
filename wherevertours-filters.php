@@ -78,8 +78,9 @@ function output_current_user_email(){
 	$current_user_email = $current_user->user_email;
 	echo $current_user_email;
 	
-	$search_criteria['field_filters'][] = array( 'key' => '5', 'value' => $current_user_email);
-	$entries = GFAPI::get_entries( '2', $search_criteria );
+	//$search_criteria['field_filters'][] = array( 'key' => '5', 'value' => $current_user_email);
+	//$entries = GFAPI::get_entries( '2', $search_criteria );
+	$entries = GFAPI::get_entries( '2' );
 	echo '<pre>', var_dump ($entries), '</pre>';
 }
 add_shortcode( 'display_current_user_email', 'output_current_user_email')
