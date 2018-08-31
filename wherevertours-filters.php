@@ -63,7 +63,7 @@ function account_activation_redirect_add_referral( ){
 	$current_user = wp_get_current_user();
 	$current_user_email = $current_user->user_email;
 	
-	$search_criteria['field_filters'][] = array( 'key' => '5', 'value' => $current_user_email);
+	$search_criteria['field_filters'][] = array( 'key' => '2', 'operator' => 'contains', 'value' => $current_user_email );
 	$entries = GFAPI::get_entries( '2', $search_criteria );
 	
 	$return_to_referral_url = rgar( $entries[0], '5' );
@@ -78,11 +78,9 @@ function output_current_user_email(){
 	$current_user_email = $current_user->user_email;
 	echo $current_user_email;
 	
-	//$search_criteria['field_filters'][] = array( 'key' => '5', 'value' => $current_user_email);
 	$search_criteria['field_filters'][] = array( 'key' => '2', 'operator' => 'contains', 'value' => $current_user_email );
-	//$entries = GFAPI::get_entries( '2', $search_criteria );
 	$entries = GFAPI::get_entries( '2', $search_criteria );
-	echo '<pre>', var_dump ($entries), '</pre>';
+	echo '<pre>', var_dump ($entries[0]), '</pre>';
 }
 add_shortcode( 'display_current_user_email', 'output_current_user_email')
 
