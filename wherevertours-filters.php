@@ -79,7 +79,7 @@ function output_current_user_email(){
 	echo $current_user_email;
 	
 	//$search_criteria['field_filters'][] = array( 'key' => '5', 'value' => $current_user_email);
-	$search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => $current_user_email );
+	$search_criteria['field_filters'][] = array( 'key' => '2', 'operator' => 'contains', 'value' => $current_user_email );
 	//$entries = GFAPI::get_entries( '2', $search_criteria );
 	$entries = GFAPI::get_entries( '2', $search_criteria );
 	echo '<pre>', var_dump ($entries), '</pre>';
