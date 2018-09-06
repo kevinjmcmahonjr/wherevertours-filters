@@ -52,10 +52,13 @@ function dequeue_woocommerce_styles_scripts() {
 add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_styles_scripts', 99 );
 
 function account_creation_referral_url( $form ){
-	// Grab URL from HTTP Server Var and put it into a variable
-	$referral_url = $_SERVER['HTTP_REFERER'];
-	// Return that value to the form
-	return esc_url_raw($referral_url);
+	// Check if HTTP_REFERER exists
+	if ($_SERVER['HTTP_REFERER']){
+		// Grab URL from HTTP Server Var and put it into a variable
+		$referral_url = $_SERVER['HTTP_REFERER'];
+		// Return that value to the form
+		return esc_url_raw($referral_url);
+	}
 }
 add_filter( 'gform_field_value_referral_url', 'account_creation_referral_url');
 	
