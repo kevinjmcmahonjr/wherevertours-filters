@@ -95,4 +95,30 @@ add_shortcode( 'display_current_user_email', 'output_current_user_email')
 }
 add_filter( 'tml_action_template_message', 'tml_action_template_message_filter', 10, 2 );
 */
+	
+add_action( '__before_loop' , 'hide_hidden_tours' );
+add_action( '__after_loop' , 'hide_hidden_tours' );
+function hide_hidden_tours(){
+	// Call the global query variable
+	global $wp_query;
+	switch (current_filter()){
+		case '__before_loop':
+			$args = array(
+				'post_type' => 'tour',
+				'meta_query' => array(
+					'key' => '',
+					'value' => '1',
+					'meta_compare' => '=',
+				)
+			);
+			query_posts ($args);
+			$wp_query->is_page = true;
+			$wp_query->is_singular = true;
+			$wp_query->is_archive = true;
+			break;
+		case '__after_loop':
+			wp_reset_query();
+			break;
+	}
+}
 ?>
