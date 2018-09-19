@@ -114,6 +114,7 @@ function hide_hidden_tours(){
 					'key' => 'hide_from_queries',
 					'value' => '1',
 					'compare' => '!='
+					)
 				)
 			);
 			break;
