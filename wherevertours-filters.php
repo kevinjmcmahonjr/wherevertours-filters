@@ -104,16 +104,16 @@ function hide_hidden_tours(){
 	switch (current_filter()){
 		case '__before_loop':
 			$args = array(
-				'post_type' => 'tour',
+				'post_type' => 'tours',
 				'meta_query' => array(
-					'key' => '',
+					'key' => 'hide_from_queries',
 					'value' => '1',
-					'meta_compare' => '=',
+					'meta_compare' => '!=',
 				)
 			);
 			query_posts ($args);
-			$wp_query->is_page = true;
-			$wp_query->is_singular = true;
+			//$wp_query->is_page = true;
+			//$wp_query->is_singular = true;
 			$wp_query->is_archive = true;
 			break;
 		case '__after_loop':
