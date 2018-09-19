@@ -100,12 +100,7 @@ add_filter( 'tml_action_template_message', 'tml_action_template_message_filter',
 
 add_action('pre_get_posts','hide_hidden_tours');
 function hide_hidden_tours($query){
-	// Call the global query variable
-	global $wp_query;
-	if( !$query->is_main_query() ){
-		return;
-	}
-	else{
+	if( !is_admin() && $query->is_main_query() && $query->query_vars['post_type'] == 'tours'){
 		$meta_query = array(
 			'key' => 'hide_from_queries',
 			'value' => '1',
