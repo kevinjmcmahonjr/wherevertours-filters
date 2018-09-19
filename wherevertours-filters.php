@@ -87,6 +87,12 @@ function output_current_user_email(){
 }
 add_shortcode( 'display_current_user_email', 'output_current_user_email');
 
+function output_current_query(){
+	global $wp_query;
+	echo '<pre>', var_dump($wp_query), '</pre>';
+}
+add_shortcode ('spit_out_query_object', 'output_current_query');
+
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
     if ( 'register' == $action )
