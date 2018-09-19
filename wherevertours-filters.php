@@ -98,7 +98,7 @@ add_filter( 'tml_action_template_message', 'tml_action_template_message_filter',
 	
 
 
-add_action('pre_get_posts','hide_tours_setup');
+add_action('pre_get_posts','hide_hidden_tours');
 function hide_hidden_tours($query){
 	// Call the global query variable
 	global $wp_query;
