@@ -85,7 +85,7 @@ function output_current_user_email(){
 	$entries = GFAPI::get_entries( '2', $search_criteria );
 	echo '<pre>', var_dump ($entries[0]), '</pre>';
 }
-add_shortcode( 'display_current_user_email', 'output_current_user_email')
+add_shortcode( 'display_current_user_email', 'output_current_user_email');
 
 // Rename Registration
 /*function tml_action_template_message_filter( $message, $action ) {
