@@ -113,7 +113,7 @@ function hide_hidden_tours(){
 				'meta_query' => array(
 					'key' => 'hide_from_queries',
 					'value' => '1',
-					'compare' => '!=',
+					'compare' => '!='
 				)
 			);
 			break;
