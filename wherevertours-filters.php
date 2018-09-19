@@ -98,29 +98,20 @@ add_filter( 'tml_action_template_message', 'tml_action_template_message_filter',
 	
 
 
-add_action('template_redirect','hide_tours_setup', 20);
-function hide_tours_setup() {
-	add_action( '__before_loop', 'hide_hidden_tours' );
-	add_action( '__after_loop', 'hide_hidden_tours', 100);
-}
-function hide_hidden_tours(){
+add_action('pre_get_posts','hide_tours_setup');
+function hide_hidden_tours($query){
 	// Call the global query variable
-	global $wp_query, $wp_the_query;
-	switch (current_filter() ){
-		case '__before_loop':
-			$wp_query = new WP_Query( array(
-				'post_type' => 'tours',
-				'meta_query' => array(
-					'key' => 'hide_from_queries',
-					'value' => '1',
-					'compare' => '!='
-					)
-				)
-			);
-			break;
-		case '__after_loop':
-			$wp_query = $wp_the_query;
-			break;
+	global $wp_query;
+	if( !$query->is_main_query() ){
+		return;
+	}
+	else{
+		$meta_query = array(
+			'key' => 'hide_from_queries',
+			'value' => '1',
+			'compare' => '!='
+		);
+		$query->set( 'meta_query', $meta_query );
 	}
 }
 ?>
