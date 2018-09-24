@@ -118,7 +118,7 @@ function hide_hidden_tours($query){
 
 add_action('pre_get_posts','hide_hidden_tours');
 function hide_hidden_tours($query){
-	if( !is_admin() && $query->is_main_query() && $query->query_vars['post_type'] == 'tours'){
+	if( !is_admin() && $query->is_main_query() ){
 		$query->set( 'meta_key', 'hide_from_queries' );
 		$query->set( 'meta_value', '0' );
 	}
