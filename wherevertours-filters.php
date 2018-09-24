@@ -105,7 +105,7 @@ add_filter( 'tml_action_template_message', 'tml_action_template_message_filter',
 
 add_action('pre_get_posts','hide_hidden_tours');
 function hide_hidden_tours($query){
-	if( !is_admin() && $query->is_main_query() ){
+	if( !is_admin() && $query->is_main_query() && is_post_type_archive( 'tours' )){
 		$current_meta_query = $query->get('meta_query');
 		$custom_meta_query = array(
 			array(
