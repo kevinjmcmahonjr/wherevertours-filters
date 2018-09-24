@@ -108,7 +108,7 @@ function hide_hidden_tours($query){
 	if( !is_admin() && $query->is_main_query() && is_archive() && is_search() ){
 		$meta_query = array(
 			array(
-				'key' => 'hide_from_queries',
+				'key' => 'field_5b1562c54c570',
 				'value' => '1',
 				'compare' => '!='
 			)
