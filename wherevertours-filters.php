@@ -108,6 +108,12 @@ function hide_hidden_tours($query){
 	if( !is_admin() && $query->is_main_query() && !is_single() ){
 		$current_meta_query = $query->get('meta_query');
 		$custom_meta_query = array(
+			'relation' => 'OR',
+			array(
+				'key' => 'hide_from_queries',
+				'compare' => 'NOT EXISTS',
+				'value' => ''
+			),
 			array(
 				'key' => 'hide_from_queries',
 				'type' => 'BINARY',
