@@ -103,19 +103,21 @@ add_filter( 'tml_action_template_message', 'tml_action_template_message_filter',
 */
 	
 
-/*
 add_action('pre_get_posts','hide_hidden_tours');
 function hide_hidden_tours($query){
-	if( !is_admin() && $query->is_main_query() && $query->query_vars['post_type'] == 'tours'){
+	if( !is_admin() && $query->is_main_query() && is_archive() && is_search() ){
 		$meta_query = array(
-			'key' => 'hide_from_queries',
-			'value' => '1',
-			'compare' => '!='
+			array(
+				'key' => 'hide_from_queries',
+				'value' => '1',
+				'compare' => '!='
+			)
 		);
 		$query->set( 'meta_query', $meta_query );
 	}
-}*/
+}
 
+/*
 add_action('pre_get_posts','hide_hidden_tours');
 function hide_hidden_tours($query){
 	if( !is_admin() && $query->is_main_query() && is_archive() && is_search() ){
@@ -123,4 +125,5 @@ function hide_hidden_tours($query){
 		$query->set( 'meta_value', '0' );
 	}
 }
+*/
 ?>
