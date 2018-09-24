@@ -114,6 +114,7 @@ function hide_hidden_tours($query){
 			)
 		);
 		$query->set( 'meta_query', $meta_query );
+		$query->set( 'meta_key', 'field_5b1562c54c570' );
 	}
 }
 
