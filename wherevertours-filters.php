@@ -109,7 +109,7 @@ function hide_hidden_tours($query){
 		$current_meta_query = $query->get('meta_query');
 		$custom_meta_query = array(
 			array(
-				'key' => 'field_5b1562c54c570',
+				'key' => 'hide_from_queries',
 				'type' => 'BINARY',
 				'value' => '1',
 				'compare' => '!='
