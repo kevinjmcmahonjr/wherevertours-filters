@@ -106,15 +106,17 @@ add_filter( 'tml_action_template_message', 'tml_action_template_message_filter',
 add_action('pre_get_posts','hide_hidden_tours');
 function hide_hidden_tours($query){
 	if( !is_admin() && $query->is_main_query() && is_archive() && is_search() ){
-		$meta_query = array(
+		$current_meta_query = query->get('meta_query');
+		$custom_meta_query = array(
 			array(
 				'key' => 'field_5b1562c54c570',
+				'type' => 'BINARY',
 				'value' => '1',
 				'compare' => '!='
 			)
 		);
+		$meta_query = $current_meta_query[] = $custom_meta_query;
 		$query->set( 'meta_query', $meta_query );
-		$query->set( 'meta_key', 'field_5b1562c54c570' );
 	}
 }
 
